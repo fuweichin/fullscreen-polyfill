@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Fullscreen Test</title>
+</head>
+<body>
+
+<h1>Fullscreen Test</h1>
+
+<img id="img" src="https://mdn.mozillademos.org/files/206/Canvas_backdrop.png" width="200" height="150" alt="" />
+<button type="button" id="btnEnterFullScreen">Enter full screen</button>
+
+<script src="fullscreen-polyfill.js"></script>
+<script>
+document.addEventListener("DOMContentLoaded",function(){
+	document.querySelector("#btnEnterFullScreen").addEventListener("click", function(event) {
+		console.log("fullscreenEnabled",document.fullscreenEnabled);
+		if(document.fullscreenEnabled){//fullscreen related attribute
+			var v=document.querySelector("img").requestFullscreen();//fullscreen related method
+			setTimeout(function(){
+				console.log("fullscreenElement",document.fullscreenElement);
+			},17);
+		}
+	});
+	document.onfullscreenchange=function(e){//fullscreen related event handler
+		console.log("fullscreenchange handler",e);
+	};
+	document.addEventListener("fullscreenchange",function(e){//fullscreen related event
+		console.log("fullscreenchange listener",e);
+	});
+});
+</script>
+</body>
+</html>
